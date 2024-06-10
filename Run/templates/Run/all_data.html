@@ -1,0 +1,60 @@
+{% extends 'Run/base.html' %}
+
+{% block content %}
+{% include 'Run/navbars.html' %}
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-center"> <!-- Center alignment -->
+                <h5 class="m-0 font-weight-bold text-primary" style="font-weight: 700;">All  Achievemnts</h5> <!-- Increase font weight -->
+            </div>
+            
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Distance Covered (km)</th>
+                                        <th>Time Taken (h:m:s)</th>
+                                        <th>Calories Burned (cal)</th>
+                                        <th>Average Speed (km/hr)</th>
+                                        <th>Achievement Photo</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for achievement in achievements %}
+                                        <tr>
+                                            <td>{{ achievement.achievement_date }}</td>
+                                            <td>{{ achievement.distance_covered }}</td>
+                                            <td>{{ achievement.time_hours }}h {{ achievement.time_minutes }}m {{ achievement.time_seconds }}s</td>
+                                            <td>{{ achievement.calories_burned }}</td>
+                                            <td>{{ achievement.average_speed }}</td>
+                                            <td>
+                                                {% if achievement.achievement_photo %}
+                                                    <img class="rounded img-thumbnail" src="{{ achievement.achievement_photo.url }}" alt="Achievement Photo" style="max-width: 50px; max-height: 50px;">
+                                                {% endif %}
+                                            </td>
+                                            <td><a class="btn btn-primary mt-3" href="{% url 'edit_achievement' achievement.slug %}">Edit</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

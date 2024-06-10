@@ -1,0 +1,22 @@
+{% extends 'Run/base.html' %}
+
+{% block title %}Edit Achievement{% endblock %}
+
+{% block content %}
+    {% include 'Run/navbars.html' %}
+    <div class="container mt-5">
+        <h2>Edit Achievement</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if form.achievement_photo.value %}
+                <div class="form-group">
+                    <label for="current-photo">Current Photo:</label>
+                    <img src="{{ form.achievement_photo.value.url }}" alt="Current Achievement Photo" class="img-thumbnail" style="max-width: 200px;">
+                </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a class="btn btn-secondary" href="{% url 'dashboard' %}">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

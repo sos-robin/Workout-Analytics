@@ -1,0 +1,101 @@
+{% extends 'Run/base.html' %}
+
+{% block content %}
+<section class="vh-100" style="background-color: #2779e2;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <h1 class="text-white mb-4 text-center">Add Today's Achievements</h1>
+
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body">
+                        <form method="post" action="{% url 'addAchievement' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md-4">
+                                    <h6 class="mb-0">Distance Covered (Km)</h6>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        {{ form.distance_covered }}
+                                        <span class="input-group-text">km</span>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-4">
+                                    <h6 class="mb-0">Time Taken</h6>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        {{ form.time_hours }}
+                                        <span class="input-group-text">hrs</span>
+                                    </div>
+                                    <div class="input-group mt-2">
+                                        {{ form.time_minutes }}
+                                        <span class="input-group-text">mins</span>
+                                    </div>
+                                    <div class="input-group mt-2">
+                                        {{ form.time_seconds }}
+                                        <span class="input-group-text">secs</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md-4">
+                                    <h6 class="mb-0">Calories Burned</h6>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        {{ form.calories_burned }}
+                                        <span class="input-group-text">cal</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md-4">
+                                    <h6 class="mb-0">Average Speed (km/hr)</h6>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        {{ form.average_speed }}
+                                        <span class="input-group-text">km/hr</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-4">
+                                    <h6 class="mb-0">Day of Achievement</h6>
+                                </div>
+                                <div class="col-md-8">
+                                    {{ form.achievement_date }}
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-4">
+                                    <h6 class="mb-0">Achievement Photo</h6>
+                                </div>
+                                <div class="col-md-8">
+                                    {{ form.achievement_photo }}
+                                    <img id="preview" src="" alt="Image Preview" style="max-width: 100%; display: none;">
+                                    <div class="small text-muted mt-2">Upload a photo showcasing your today's achievement. Max file size 10 MB</div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-sm">Submit Achievement</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
